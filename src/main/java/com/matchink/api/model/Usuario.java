@@ -24,38 +24,88 @@ public class Usuario {
         this.email = email;
         likes = visualizacoes = 0;
         this.url_fotos = new ArrayList<String>();
+        this.id_estudios = new ArrayList<String>();
+        e_tatuador = false;
     }
 
-    public Usuario(boolean e_tatuador, String nome, String url_foto_perfil, String link_insta, String email) {
+    public Usuario(boolean e_tatuador, String nome, String email) {
         this.e_tatuador = e_tatuador;
         this.nome = nome;
-        this.url_foto_perfil = url_foto_perfil;
-        this.link_insta = link_insta;
         this.email = email;
-        this.url_fotos = new ArrayList<String>();
         likes = visualizacoes = 0;
+        this.url_fotos = new ArrayList<String>();
+        this.id_estudios = new ArrayList<String>();
     }
 
-    public Usuario(String nome, String url_foto_perfil, String bio, String link_insta, String email) {
+    public boolean isTatuador() {
+        return e_tatuador;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public List<String> getId_estudios() {
+        return id_estudios;
+    }
+
+    public List<String> getUrl_fotos() {
+        return url_fotos;
+    }
+
+    public int getVisualizacoes() {
+        return visualizacoes;
+    }
+
+    public String getLink_insta() {
+        return link_insta;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getUrl_foto_perfil() {
+        return url_foto_perfil;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setUrl_foto_perfil(String url_foto_perfil) {
+        this.url_foto_perfil = url_foto_perfil;
+    }
+
+    public void setNome(String nome) {
         this.nome = nome;
-        this.url_foto_perfil = url_foto_perfil;
-        this.bio = bio;
-        this.link_insta = link_insta;
-        this.email = email;
-        this.url_fotos = new ArrayList<String>();
-        likes = visualizacoes = 0;
     }
 
-    public Usuario(boolean e_tatuador, String nome, String url_foto_perfil, String bio, String link_insta, String email) {
-        this.e_tatuador = e_tatuador;
-        this.nome = nome;
-        this.url_foto_perfil = url_foto_perfil;
+    public void setBio(String bio) {
         this.bio = bio;
-        this.link_insta = link_insta;
-        this.email = email;
-        likes = visualizacoes = 0;
-        this.url_fotos = new ArrayList<String>();
     }
 
+    public void setLink_insta(String link_insta) {
+        this.link_insta = link_insta;
+    }
 
+    public void setLikes() {
+        this.likes += 1;
+    }
+
+    public void setVisualizacoes() {
+        this.visualizacoes += 1;
+    }
+
+    public void pushId_estudio(String id_estudio) {
+        this.id_estudios.add(id_estudio);
+    }
+
+    public void pushUrl_fotos(String url_foto) {
+        this.url_fotos.add(url_foto);
+    }
 }

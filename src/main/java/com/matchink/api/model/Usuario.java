@@ -41,6 +41,10 @@ public class Usuario {
         return e_tatuador;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public int getLikes() {
         return likes;
     }

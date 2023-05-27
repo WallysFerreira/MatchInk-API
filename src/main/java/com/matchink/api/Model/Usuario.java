@@ -1,4 +1,4 @@
-package com.matchink.api.model;
+package com.matchink.api.Model;
 
 import org.springframework.data.annotation.Id;
 

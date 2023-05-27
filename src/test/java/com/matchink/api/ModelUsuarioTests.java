@@ -1,6 +1,6 @@
 package com.matchink.api;
 
-import com.matchink.api.model.Usuario;
+import com.matchink.api.Model.Usuario;
 import org.junit.jupiter.api.Test;
 
 class ModelUsuarioTests {

@@ -57,6 +57,12 @@ public class UsuarioController {
                         case "url_fotos":
                             usuario.pushUrl_fotos(patch.getValue());
                             break;
+                        case "likes":
+                            usuario.addLikes();
+                            break;
+                        case "visualizacoes":
+                            usuario.addVisualizacoes();
+                            break;
                         default:
                             throw new CampoNaoEncontradoException(patch.getPath());
                     }

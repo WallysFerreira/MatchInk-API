@@ -2,10 +2,8 @@ package com.matchink.api.Controller;
 
 import com.matchink.api.Model.Usuario;
 import com.matchink.api.Repository.UsuarioRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UsuarioController {
@@ -18,5 +16,10 @@ public class UsuarioController {
     @PostMapping("/usuarios")
     Usuario adicionarUsuario(@RequestBody Usuario novoUsuario) {
         return repository.save(novoUsuario);
+    }
+
+    @GetMapping("/usuarios/{id}")
+    Usuario retornarUmUsuario(@PathVariable String id) {
+        return repository.findById(id).orElseThrow(() -> new UsuarioNaoEncontradoException(id));
     }
 }

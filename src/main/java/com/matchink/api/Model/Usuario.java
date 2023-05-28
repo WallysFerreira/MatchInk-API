@@ -20,6 +20,9 @@ public class Usuario {
     private int visualizacoes;
     private List<String> url_fotos;
 
+    public Usuario() {
+    }
+
     public Usuario(@JsonProperty("nome") String nome, @JsonProperty("email") String email) {
         this.nome = nome;
         this.email = email;

@@ -1,5 +1,6 @@
-package com.matchink.api.model;
+package com.matchink.api.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class Usuario {
     private int visualizacoes;
     private List<String> url_fotos;
 
-    public Usuario(String nome, String email) {
+    public Usuario(@JsonProperty("nome") String nome, @JsonProperty("email") String email) {
         this.nome = nome;
         this.email = email;
         likes = visualizacoes = 0;
@@ -28,7 +29,7 @@ public class Usuario {
         e_tatuador = false;
     }
 
-    public Usuario(boolean e_tatuador, String nome, String email) {
+    public Usuario(@JsonProperty("tatuador") boolean e_tatuador, @JsonProperty("nome") String nome, @JsonProperty("email") String email) {
         this.e_tatuador = e_tatuador;
         this.nome = nome;
         this.email = email;

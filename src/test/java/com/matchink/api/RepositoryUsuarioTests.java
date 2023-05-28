@@ -1,7 +1,7 @@
 package com.matchink.api;
 
-import com.matchink.api.model.Usuario;
-import com.matchink.api.repository.UsuarioRepository;
+import com.matchink.api.Model.Usuario;
+import com.matchink.api.Repository.UsuarioRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;

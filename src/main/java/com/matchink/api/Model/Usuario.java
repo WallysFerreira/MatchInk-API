@@ -101,11 +101,11 @@ public class Usuario {
         this.link_insta = link_insta;
     }
 
-    public void setLikes() {
+    public void addLikes() {
         this.likes += 1;
     }
 
-    public void setVisualizacoes() {
+    public void addVisualizacoes() {
         this.visualizacoes += 1;
     }
 

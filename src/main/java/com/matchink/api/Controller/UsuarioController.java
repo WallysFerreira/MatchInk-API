@@ -33,12 +33,17 @@ public class UsuarioController {
             switch (patch.getOp()) {
                 case "replace":
                     switch (patch.getPath()) {
-                        case "bio":
-                            usuario.setBio(patch.getValue());
+                        case "nome":
+                            usuario.setNome(patch.getValue());
                             break;
                         case "url_foto_perfil":
                             usuario.setUrl_foto_perfil(patch.getValue());
                             break;
+                        case "bio":
+                            usuario.setBio(patch.getValue());
+                            break;
+                        case "link_insta":
+                            usuario.setLink_insta(patch.getValue());
                         default:
                             throw new CampoNaoEncontradoException(patch.getPath());
                     }

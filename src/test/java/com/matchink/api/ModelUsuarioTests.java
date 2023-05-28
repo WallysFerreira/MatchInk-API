@@ -69,16 +69,16 @@ class ModelUsuarioTests {
 
     @Test
     void incrementar_likes() {
-        teste.setLikes();
-        teste.setLikes();
-        teste.setLikes();
+        teste.addLikes();
+        teste.addLikes();
+        teste.addLikes();
 
         assert(teste.getLikes() == 3);
     }
 
     @Test
     void incrementar_visualizacoes() {
-        teste.setVisualizacoes();
+        teste.addVisualizacoes();
 
         assert(teste.getVisualizacoes() == 1);
     }

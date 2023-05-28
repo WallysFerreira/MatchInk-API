@@ -5,6 +5,8 @@ import com.matchink.api.JsonPatch;
 import com.matchink.api.Repository.UsuarioRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @RestController
 public class UsuarioController {
     private UsuarioRepository repository;
@@ -24,21 +26,23 @@ public class UsuarioController {
     }
 
     @PatchMapping("/usuarios/{id}")
-    Usuario atualizarCampo(@PathVariable String id, @RequestBody JsonPatch patch) {
+    Usuario atualizarCampo(@PathVariable String id, @RequestBody ArrayList<JsonPatch> patchs) {
         Usuario usuario = repository.findById(id).orElseThrow(() -> new UsuarioNaoEncontradoException(id));
 
-        switch(patch.getOp()) {
-            case "replace":
-                switch(patch.getPath()) {
-                    case "bio":
-                        usuario.setBio(patch.getValue());
-                        break;
-                    case "url_foto_perfil":
-                        usuario.setUrl_foto_perfil(patch.getValue());
-                        break;
-                    default:
-                        throw new CampoNaoEncontradoException(patch.getPath());
-                }
+        for (JsonPatch patch: patchs) {
+            switch (patch.getOp()) {
+                case "replace":
+                    switch (patch.getPath()) {
+                        case "bio":
+                            usuario.setBio(patch.getValue());
+                            break;
+                        case "url_foto_perfil":
+                            usuario.setUrl_foto_perfil(patch.getValue());
+                            break;
+                        default:
+                            throw new CampoNaoEncontradoException(patch.getPath());
+                    }
+            }
         }
 
         repository.save(usuario);

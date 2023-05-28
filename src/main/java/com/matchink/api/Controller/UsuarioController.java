@@ -44,9 +44,37 @@ public class UsuarioController {
                             break;
                         case "link_insta":
                             usuario.setLink_insta(patch.getValue());
+                            break;
                         default:
                             throw new CampoNaoEncontradoException(patch.getPath());
                     }
+                    break;
+                case "add":
+                    switch (patch.getPath()) {
+                        case "id_estudios":
+                            usuario.pushId_estudio(patch.getValue());
+                            break;
+                        case "url_fotos":
+                            usuario.pushUrl_fotos(patch.getValue());
+                            break;
+                        default:
+                            throw new CampoNaoEncontradoException(patch.getPath());
+                    }
+                    break;
+                case "remove":
+                    switch (patch.getPath()) {
+                        case "id_estudios":
+                            usuario.removeId_estudio(patch.getValue());
+                            break;
+                        case "url_fotos":
+                            usuario.removeUrl_fotos(patch.getValue());
+                            break;
+                        default:
+                            throw new CampoNaoEncontradoException(patch.getPath());
+                    }
+                    break;
+                default:
+                   throw new CampoNaoEncontradoException(patch.getPath());
             }
         }
 

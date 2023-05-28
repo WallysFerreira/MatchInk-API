@@ -116,4 +116,23 @@ public class Usuario {
     public void pushUrl_fotos(String url_foto) {
         this.url_fotos.add(url_foto);
     }
+
+    public void removeId_estudio(String id_estudio) {
+        for (String id: this.id_estudios) {
+            if (id.equals(id_estudio)) {
+                this.id_estudios.remove(id);
+                return;
+            }
+        }
+    }
+
+    public void removeUrl_fotos(String url_foto) {
+        for (String url: this.url_fotos) {
+            if (url.equals(url_foto)) {
+                this.url_fotos.remove(url);
+                return;
+            }
+        }
+
+    }
 }

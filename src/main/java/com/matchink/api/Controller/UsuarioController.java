@@ -33,9 +33,11 @@ public class UsuarioController {
                     case "bio":
                         usuario.setBio(patch.getValue());
                         break;
+                    case "url_foto_perfil":
+                        usuario.setUrl_foto_perfil(patch.getValue());
+                        break;
                     default:
-
-
+                        throw new CampoNaoEncontradoException(patch.getPath());
                 }
         }
 

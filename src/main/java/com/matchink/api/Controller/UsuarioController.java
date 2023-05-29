@@ -7,6 +7,8 @@ import jakarta.validation.Valid;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 @RequestMapping("/usuarios")
@@ -30,7 +32,7 @@ public class UsuarioController {
     }
 
     @PatchMapping("/{id}")
-    Usuario atualizarCampo(@PathVariable String id, @RequestBody ArrayList<JsonPatch> patchs) {
+    Usuario atualizarCampo(@PathVariable String id, @RequestBody ArrayList<JsonPatch> patchs) throws MalformedURLException {
         Usuario usuario = repository.findById(id).orElseThrow(() -> new UsuarioNaoEncontradoException(id));
 
         for (JsonPatch patch: patchs) {

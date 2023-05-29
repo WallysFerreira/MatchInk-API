@@ -3,8 +3,11 @@ package com.matchink.api.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.data.annotation.Id;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,8 +94,12 @@ public class Usuario {
         return email;
     }
 
-    public void setUrl_foto_perfil(String url_foto_perfil) {
-        this.url_foto_perfil = url_foto_perfil;
+    public void setUrl_foto_perfil(String url_foto_perfil) throws MalformedURLException {
+        if (UrlValidator.isValid(url_foto_perfil)) {
+            this.url_foto_perfil = url_foto_perfil;
+        } else {
+            throw new MalformedURLException();
+        }
     }
 
     public void setNome(String nome) {

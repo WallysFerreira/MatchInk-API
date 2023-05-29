@@ -20,6 +20,7 @@ public class Usuario {
     private String link_insta;
     @NotBlank(message = "Email não pode ser nulo")
     @Email(message = "Não é um email válido")
+    @EmailUnico
     private String email;
     private int likes;
     private int visualizacoes;

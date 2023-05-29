@@ -3,11 +3,9 @@ package com.matchink.api.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import org.hibernate.validator.constraints.URL;
 import org.springframework.data.annotation.Id;
 
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,8 +108,12 @@ public class Usuario {
         this.bio = bio;
     }
 
-    public void setLink_insta(String link_insta) {
-        this.link_insta = link_insta;
+    public void setLink_insta(String link_insta) throws MalformedURLException {
+        if (UrlValidator.isValid(link_insta)) {
+            this.link_insta = link_insta;
+        } else {
+            throw new MalformedURLException();
+        }
     }
 
     public void addLikes() {
@@ -126,8 +128,12 @@ public class Usuario {
         this.id_estudios.add(id_estudio);
     }
 
-    public void pushUrl_fotos(String url_foto) {
-        this.url_fotos.add(url_foto);
+    public void pushUrl_fotos(String url_foto) throws MalformedURLException {
+        if (UrlValidator.isValid(url_foto)) {
+            this.url_fotos.add(url_foto);
+        } else {
+            throw new MalformedURLException();
+        }
     }
 
     public void removeId_estudio(String id_estudio) {

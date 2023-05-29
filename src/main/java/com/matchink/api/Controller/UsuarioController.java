@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
+@RequestMapping("/usuarios")
 @RestController
 public class UsuarioController {
     private UsuarioRepository repository;
@@ -15,17 +16,17 @@ public class UsuarioController {
         this.repository = repository;
     }
 
-    @PostMapping("/usuarios")
+    @PostMapping
     Usuario adicionarUsuario(@RequestBody Usuario novoUsuario) {
         return repository.save(novoUsuario);
     }
 
-    @GetMapping("/usuarios/{id}")
+    @GetMapping("/{id}")
     Usuario retornarUmUsuario(@PathVariable String id) {
         return repository.findById(id).orElseThrow(() -> new UsuarioNaoEncontradoException(id));
     }
 
-    @PatchMapping("/usuarios/{id}")
+    @PatchMapping("/{id}")
     Usuario atualizarCampo(@PathVariable String id, @RequestBody ArrayList<JsonPatch> patchs) {
         Usuario usuario = repository.findById(id).orElseThrow(() -> new UsuarioNaoEncontradoException(id));
 
@@ -87,5 +88,12 @@ public class UsuarioController {
         repository.save(usuario);
 
         return usuario;
+    }
+
+    @DeleteMapping("/{id}")
+    Usuario deletarUsuario(@PathVariable String id) {
+        Usuario usuarioEncontrado = repository.findById(id).orElseThrow(() -> new UsuarioNaoEncontradoException(id));
+        repository.delete(usuarioEncontrado);
+        return usuarioEncontrado;
     }
 }

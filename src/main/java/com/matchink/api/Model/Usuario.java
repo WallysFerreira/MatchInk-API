@@ -1,6 +1,8 @@
 package com.matchink.api.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
@@ -11,10 +13,13 @@ public class Usuario {
 
     private List<String> id_estudios;
     private boolean e_tatuador;
+    @NotBlank(message = "Nome não pode ser nulo")
     private String nome;
     private String url_foto_perfil;
     private String bio;
     private String link_insta;
+    @NotBlank(message = "Email não pode ser nulo")
+    @Email(message = "Não é um email válido")
     private String email;
     private int likes;
     private int visualizacoes;

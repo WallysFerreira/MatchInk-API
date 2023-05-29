@@ -3,6 +3,8 @@ package com.matchink.api.Controller;
 import com.matchink.api.Model.Usuario;
 import com.matchink.api.JsonPatch;
 import com.matchink.api.Repository.UsuarioRepository;
+import jakarta.validation.Valid;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -17,7 +19,8 @@ public class UsuarioController {
     }
 
     @PostMapping
-    Usuario adicionarUsuario(@RequestBody Usuario novoUsuario) {
+    @Validated
+    Usuario adicionarUsuario(@RequestBody @Valid Usuario novoUsuario) {
         return repository.save(novoUsuario);
     }
 

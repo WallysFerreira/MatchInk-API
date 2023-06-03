@@ -2,8 +2,10 @@ package com.matchink.api.Controller;
 
 import com.matchink.api.Model.Usuario;
 import com.matchink.api.JsonPatch;
+import com.matchink.api.Repository.EstudioRepository;
 import com.matchink.api.Repository.UsuarioRepository;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,8 @@ import java.util.ArrayList;
 @RestController
 public class UsuarioController {
     private UsuarioRepository repository;
+    @Autowired
+    private EstudioRepository estudioRepo;
 
     public UsuarioController(UsuarioRepository repository) {
         this.repository = repository;
@@ -58,7 +62,11 @@ public class UsuarioController {
                 case "add":
                     switch (patch.getPath()) {
                         case "id_estudios":
-                            usuario.pushId_estudio(patch.getValue());
+                            if (estudioRepo.existsById(patch.getValue())) {
+                                usuario.pushId_estudio(patch.getValue());
+                            } else {
+                                throw new EstudioNaoEncontradoException(patch.getValue());
+                            }
                             break;
                         case "url_fotos":
                             usuario.pushUrl_fotos(patch.getValue());

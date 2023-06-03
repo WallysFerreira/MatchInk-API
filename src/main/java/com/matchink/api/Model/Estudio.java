@@ -1,6 +1,8 @@
 package com.matchink.api.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
@@ -10,17 +12,24 @@ public class Estudio {
     @Id
     private String id;
 
+    @NotBlank(message = "Precisa de um ID para o dono")
     private String id_dono;
     private List<String> id_tatuadores_residentes;
     private List<String> id_tatuadores_convidados;
+    @NotBlank(message = "Precisa de um nome")
     private String nome;
     private String link_insta;
     private List<String> url_fotos;
     private double nota;
+    @NotBlank(message = "Nome da rua é obrigatorio")
     private String rua;
+    @NotNull(message = "Numero é obrigatorio")
     private int numero;
+    @NotBlank(message = "Bairro é obrigatorio")
     private String bairro;
+    @NotBlank(message = "Cidade é obrigatoria")
     private String cidade;
+    @NotBlank(message = "Estado é obrigatorio")
     private String estado;
 
     public Estudio() {
@@ -44,7 +53,11 @@ public class Estudio {
     }
 
     public String getId() {
-        return Id;
+        return id;
+    }
+
+    public String getId_dono() {
+        return id_dono;
     }
 
     public List<String> getId_tatuadores_residentes() {

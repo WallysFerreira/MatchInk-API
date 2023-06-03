@@ -1,12 +1,14 @@
 package com.matchink.api.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Estudio {
-    @Id private String Id;
+    @Id
+    private String id;
 
     private String id_dono;
     private List<String> id_tatuadores_residentes;

@@ -11,7 +11,6 @@ import java.util.List;
 
 public class Usuario {
     @Id private String id;
-
     private List<String> id_estudios;
     private boolean e_tatuador;
     @NotBlank(message = "Nome não pode ser nulo")

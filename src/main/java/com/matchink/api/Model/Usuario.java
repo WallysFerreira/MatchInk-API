@@ -1,8 +1,11 @@
 package com.matchink.api.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,10 +14,14 @@ public class Usuario {
 
     private List<String> id_estudios;
     private boolean e_tatuador;
+    @NotBlank(message = "Nome não pode ser nulo")
     private String nome;
     private String url_foto_perfil;
     private String bio;
     private String link_insta;
+    @NotBlank(message = "Email não pode ser nulo")
+    @Email(message = "Não é um email válido")
+    @EmailUnico
     private String email;
     private int likes;
     private int visualizacoes;
@@ -85,8 +92,12 @@ public class Usuario {
         return email;
     }
 
-    public void setUrl_foto_perfil(String url_foto_perfil) {
-        this.url_foto_perfil = url_foto_perfil;
+    public void setUrl_foto_perfil(String url_foto_perfil) throws MalformedURLException {
+        if (UrlValidator.isValid(url_foto_perfil)) {
+            this.url_foto_perfil = url_foto_perfil;
+        } else {
+            throw new MalformedURLException();
+        }
     }
 
     public void setNome(String nome) {
@@ -97,8 +108,12 @@ public class Usuario {
         this.bio = bio;
     }
 
-    public void setLink_insta(String link_insta) {
-        this.link_insta = link_insta;
+    public void setLink_insta(String link_insta) throws MalformedURLException {
+        if (UrlValidator.isValid(link_insta)) {
+            this.link_insta = link_insta;
+        } else {
+            throw new MalformedURLException();
+        }
     }
 
     public void addLikes() {
@@ -113,8 +128,12 @@ public class Usuario {
         this.id_estudios.add(id_estudio);
     }
 
-    public void pushUrl_fotos(String url_foto) {
-        this.url_fotos.add(url_foto);
+    public void pushUrl_fotos(String url_foto) throws MalformedURLException {
+        if (UrlValidator.isValid(url_foto)) {
+            this.url_fotos.add(url_foto);
+        } else {
+            throw new MalformedURLException();
+        }
     }
 
     public void removeId_estudio(String id_estudio) {

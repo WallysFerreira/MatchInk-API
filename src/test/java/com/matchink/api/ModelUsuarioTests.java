@@ -3,6 +3,8 @@ package com.matchink.api;
 import com.matchink.api.Model.Usuario;
 import org.junit.jupiter.api.Test;
 
+import java.net.MalformedURLException;
+
 class ModelUsuarioTests {
     Usuario teste = new Usuario("Teste", "teste@email.com");
 
@@ -32,7 +34,7 @@ class ModelUsuarioTests {
     }
 
     @Test
-    void set_url_foto_perfil() {
+    void set_url_foto_perfil() throws MalformedURLException {
         String url = "teste.com";
 
         teste.setUrl_foto_perfil(url);
@@ -59,7 +61,7 @@ class ModelUsuarioTests {
     }
 
     @Test
-    void set_link_insta() {
+    void set_link_insta() throws MalformedURLException {
         String link_insta = "instagram.com/fulano";
 
         teste.setLink_insta(link_insta);
@@ -84,7 +86,7 @@ class ModelUsuarioTests {
     }
 
     @Test
-    void adicionar_fotos() {
+    void adicionar_fotos() throws MalformedURLException {
         String url = "www.teste.com/tanana.jpg";
         teste.pushUrl_fotos(url);
         assert(teste.getUrl_fotos().size() == 1);
